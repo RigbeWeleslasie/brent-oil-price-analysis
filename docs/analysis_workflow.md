@@ -1,27 +1,47 @@
 # Analysis Workflow: Change Point Analysis of Brent Oil Prices
 
-## 1. Objective
+*Task 1a deliverable — planned analysis steps, event data compilation, and*
+*communication channels. Time series property analysis for Task 1b lives in*
+*`notebooks/01_eda.ipynb`; see the summary in Section 2a and Step 3 below.*
+
+## 1. Objective (Task 1a)
 
 Quantify how major geopolitical, economic, and OPEC-policy events have shaped
 structural shifts in Brent crude oil prices (daily, 20-May-1987 to
 30-Sep-2022), and communicate those shifts in terms decision-makers
 (investors, policymakers, energy companies) can act on.
 
-## 2. Workflow Steps
+## 2. Workflow Steps (Task 1a)
 
 **Step 1 — Data ingestion and cleaning**
 Load `data/raw/BrentOilPrices.csv`, parse `Date` (day-month-year, e.g.
 `20-May-87`) to datetime, sort chronologically, check for gaps/duplicates and
-missing values, and set `Date` as the index.
+missing values, and set `Date` as the index. Implemented in
+`src/data.py::load_price_data`.
 
-**Step 2 — Event data compilation**
+**Step 2 — Event data compilation (Task 1a deliverable: `data/events.csv`)**
 Research and tabulate 10-15+ major supply/demand shocks: OPEC(+) decisions,
 wars and civil conflicts in producing regions, sanctions, and macroeconomic
-shocks (`data/events.csv`). These serve as candidate explanations to compare
-against statistically detected change points — they are not fed into the
-change point model itself.
+shocks. Loaded via `src/data.py::load_events`. These serve as candidate
+explanations to compare against statistically detected change points — they
+are not fed into the change point model itself.
 
-**Step 3 — Exploratory Data Analysis (EDA)**
+### 2a. Events Dataset — How It Is Used Downstream
+
+`data/events.csv` is not a model input; it is a reference table consulted at
+two later stages:
+
+- **EDA (Task 1b, `notebooks/01_eda.ipynb`)**: event dates are plotted as
+  vertical markers over the price series (`src/plotting.py::plot_price_with_events`)
+  and checked against spikes in rolling volatility — a first, purely
+  descriptive look at whether known events line up with visible turbulence.
+- **Change point modeling (Task 2)**: once the Bayesian model produces a
+  posterior distribution for the switch point `tau`, its credible interval is
+  compared against the dates in `data/events.csv` (Step 6 below) to formulate
+  — not prove — a hypothesis about which event most plausibly triggered each
+  detected shift.
+
+**Step 3 — Exploratory Data Analysis (Task 1b, EDA)**
 - Plot the raw price series to spot visible trends, shocks, and volatility
   regimes.
 - Compute log returns, `r_t = log(P_t) - log(P_{t-1})`, since raw prices are

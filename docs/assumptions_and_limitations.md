@@ -1,5 +1,9 @@
 # Assumptions and Limitations
 
+*Task 1a deliverable — documented assumptions and limitations, including the*
+*correlation-vs-causation distinction referenced from*
+*`docs/analysis_workflow.md`.*
+
 ## Assumptions
 
 1. **Daily closing price is representative.** The dataset records a single
