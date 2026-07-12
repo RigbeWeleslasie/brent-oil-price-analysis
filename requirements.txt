@@ -1,0 +1,21 @@
+numpy>=1.26
+pandas>=2.2
+matplotlib>=3.9
+seaborn>=0.13
+statsmodels>=0.14
+scipy>=1.13
+
+# Bayesian change point modeling (Task 2)
+pymc>=5.10
+arviz>=0.17
+
+# Dashboard backend (Task 3)
+flask>=3.0
+flask-cors>=4.0
+
+# Notebook environment
+jupyter>=1.0
+jupyterlab>=4.0
+
+# Testing
+pytest>=8.0

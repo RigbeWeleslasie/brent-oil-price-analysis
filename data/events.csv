@@ -1,0 +1,22 @@
+Date,Event,Category,Description,Expected_Direction
+1990-08-02,Iraq invades Kuwait,Conflict,"Iraqi forces invade Kuwait, triggering the Gulf War and removing a major OPEC producer's exports from the market.",Increase
+1994-01-01,NAFTA / prolonged 1990s oversupply,Economic,"Sustained period of low prices through the mid-1990s driven by ample non-OPEC supply and weak Asian demand growth.",Decrease
+1997-07-02,Asian Financial Crisis begins,Economic,"Currency and banking crisis across East Asia sharply reduces regional oil demand, contributing to the 1998 price collapse to under $10/barrel.",Decrease
+1999-03-01,OPEC production cut agreement,OPEC Policy,"OPEC and non-OPEC producers (incl. Mexico, Norway) agree to significant output cuts, helping prices recover from the 1998 lows.",Increase
+2001-09-11,September 11 terrorist attacks,Geopolitical,"Attacks on the US trigger a global demand shock and risk-off sentiment, with a short-lived but sharp price reaction.",Decrease
+2002-12-02,Venezuelan general strike / PDVSA shutdown,Conflict,"A national strike paralyzes Venezuela's state oil company, removing significant crude exports from the market into early 2003.",Increase
+2003-03-20,US-led invasion of Iraq,Conflict,"The Iraq War begins, raising fears of prolonged supply disruption from a major OPEC producer.",Increase
+2008-07-11,Brent price peaks near $147/barrel,Economic,"Oil prices peak amid strong emerging-market demand, a weak US dollar, and speculative activity, just before the global financial crisis.",Increase
+2008-09-15,Lehman Brothers collapse / Global Financial Crisis,Economic,"The GFC triggers a collapse in global demand expectations; Brent falls from ~$147 to under $40 within six months.",Decrease
+2010-12-18,Arab Spring begins,Geopolitical,"Uprisings spread across North Africa and the Middle East (Tunisia, Egypt, Libya, Syria), raising supply-disruption risk across producer states.",Increase
+2011-02-15,Libyan Civil War / NATO intervention,Conflict,"Civil conflict shuts in the majority of Libya's oil production and exports for most of 2011.",Increase
+2011-01-01,EU and US sanctions tighten on Iran,Sanctions,"Escalating sanctions over Iran's nuclear program curb Iranian crude exports, tightening global supply.",Increase
+2014-06-10,ISIS offensive in Iraq,Conflict,"ISIS captures Mosul and advances toward northern Iraqi oil infrastructure, raising near-term supply-risk premium.",Increase
+2014-11-27,OPEC declines to cut production,OPEC Policy,"OPEC (led by Saudi Arabia) maintains output despite oversupply from US shale growth, initiating the 2014-2016 price collapse (Brent falls from ~$115 to ~$30).",Decrease
+2016-01-16,Iran sanctions lifted (JCPOA implementation),Sanctions,"Implementation Day of the Iran nuclear deal lifts sanctions, allowing Iranian crude back onto the market and pressuring prices.",Decrease
+2016-11-30,First OPEC+ production cut agreement,OPEC Policy,"OPEC agrees with non-OPEC producers (notably Russia) to cut output for the first time since 2008, supporting a price recovery.",Increase
+2018-05-08,US withdraws from Iran nuclear deal,Sanctions,"The US reinstates sanctions on Iranian oil exports, tightening expected supply.",Increase
+2019-09-14,Drone/missile attack on Saudi Aramco facilities,Conflict,"Attacks on the Abqaiq and Khurais facilities knock out roughly half of Saudi Arabia's oil output temporarily, causing the largest single-day price spike in Brent's history.",Increase
+2020-03-08,Saudi-Russia price war (OPEC+ deal collapse),OPEC Policy,"Russia refuses proposed OPEC+ cuts; Saudi Arabia responds by ramping production and slashing prices, crashing the market amid collapsing COVID-19 demand.",Decrease
+2020-04-12,Record OPEC+ production cut agreement,OPEC Policy,"OPEC+ agrees to a historic ~9.7 million bpd output cut to stabilize prices after the COVID-19 demand collapse (WTI briefly turns negative in April 2020).",Increase
+2022-02-24,Russia invades Ukraine,Geopolitical,"Russia's invasion triggers sanctions on Russian energy exports and fears of a major supply disruption, pushing Brent above $100/barrel.",Increase
