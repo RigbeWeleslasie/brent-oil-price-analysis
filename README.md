@@ -7,7 +7,7 @@ Bayesian Change Point Analysis of Brent Oil Prices to identify structural breaks
 - **Task 1a — Foundation docs (complete):** analysis workflow, event dataset, assumptions/limitations.
 - **Task 1b — EDA (complete):** trend, stationarity, volatility analysis, refactored into reusable `src/` modules.
 - **Task 2 — Bayesian change point modeling (complete):** single and two-change-point models implemented with quantified impacts.
-- **Task 3 — Interactive dashboard (Flask + React):** in progress.
+- **Task 3 — Interactive dashboard (Flask + React) (complete):** fully functional dashboard with event toggling and change point visualization.
 
 ## Key Findings
 
@@ -35,31 +35,41 @@ The advanced model identified **three distinct market regimes**:
 ## Project Structure
 
 ```text
+├── .gitignore                          # Git ignore rules for Python/Node
+├── backend/
+│   └── app.py                          # Flask API serving data and change points
 ├── data/
 │   ├── raw/
-│   │   ├── BrentOilPrices.csv   # daily Brent price, 20-May-1987 to 30-Sep-2022
-│   │   └── events.csv           # 21 researched geopolitical/OPEC/economic events (Task 1a)
-│   └── processed/               # generated plots and derived data
+│   │   ├── BrentOilPrices.csv          # daily Brent price, 20-May-1987 to 30-Sep-2022
+│   │   └── events.csv                  # 21 researched geopolitical/OPEC/economic events
+│   └── processed/                      # generated plots and derived data
 ├── docs/
-│   ├── analysis_workflow.md              # end-to-end workflow, Task 1a deliverable
-│   └── assumptions_and_limitations.md    # assumptions, limitations, correlation-vs-causation (Task 1a)
+│   ├── analysis_workflow.md            # end-to-end workflow, Task 1a deliverable
+│   └── assumptions_and_limitations.md  # assumptions, limitations, correlation-vs-causation
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx                     # Main React dashboard component
+│   │   └── App.css                     # Dashboard styling
+│   └── package.json                    # React dependencies (recharts, axios)
 ├── notebooks/
-│   ├── 01_eda.ipynb                      # Task 1b EDA: trend, log returns, stationarity, volatility, events overlay
-│   └── 02_change_point_model.ipynb       # Task 2: Interactive Bayesian modeling
-├── scripts/                              # standalone analysis scripts
-├── src/                                  # reusable library code
-│   ├── data.py                           # load_price_data, load_events (with validation/error handling)
-│   ├── preprocessing.py                  # clip_date_range, add_log_returns, add_rolling_volatility
-│   ├── stationarity.py                   # adf_test, format_adf_result
-│   ├── plotting.py                       # plot_price_series, plot_log_returns, plot_rolling_volatility, plot_price_with_events
-│   ├── change_point_model.py             # Task 2: Single change point Bayesian model
-│   └── two_change_point_model.py         # Task 2: Advanced two change point model (three regimes)
-├── tests/                                # pytest unit tests for src/ (17 tests, incl. error-path coverage)
-├── trace_plot.png                        # MCMC convergence diagnostics (single CP model)
-├── posterior_tau.png                     # Change point posterior distribution (single CP model)
-├── two_cp_trace_plot.png                 # MCMC convergence diagnostics (two CP model)
-├── two_cp_posterior_taus.png             # Both change point posterior distributions
-└── requirements.txt
+│   ├── 01_eda.ipynb                    # Task 1b EDA: trend, log returns, stationarity, volatility
+│   └── 02_change_point_model.ipynb     # Task 2: Interactive Bayesian modeling
+├── scripts/                            # standalone analysis scripts
+├── src/                                # reusable library code
+│   ├── data.py                         # load_price_data, load_events (with validation)
+│   ├── preprocessing.py                # clip_date_range, add_log_returns, add_rolling_volatility
+│   ├── stationarity.py                 # adf_test, format_adf_result
+│   ├── plotting.py                     # plot_price_series, plot_log_returns, plot_rolling_volatility
+│   ├── change_point_model.py           # Task 2: Single change point Bayesian model
+│   └── two_change_point_model.py       # Task 2: Advanced two change point model (three regimes)
+├── tests/                              # pytest unit tests for src/ (17 tests)
+├── trace_plot.png                      # MCMC convergence diagnostics (single CP model)
+├── posterior_tau.png                   # Change point posterior distribution (single CP model)
+── two_cp_trace_plot.png               # MCMC convergence diagnostics (two CP model)
+├── two_cp_posterior_taus.png           # Both change point posterior distributions
+└── requirements.txt                    # Python dependencies
+```
+
 ## Setup
 
 ### Option 1: Using Conda (Recommended for PyMC)
@@ -99,7 +109,20 @@ python src/two_change_point_model.py
 - Three-regime analysis with quantified impacts
 - `two_cp_trace_plot.png` - Multi-chain convergence diagnostics
 - `two_cp_posterior_taus.png` - Both change point posterior distributions
-- Console output with exact dates and mean prices for each regime
+
+### Interactive Dashboard (Task 3)
+**Terminal 1 (Backend):**
+```bash
+cd backend
+python app.py
+```
+**Terminal 2 (Frontend):**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+*(Access the dashboard at http://localhost:5173)*
 
 ## Running Tests
 
@@ -109,7 +132,7 @@ python3 -m pytest tests/ -v
 
 ## Key Documents
 
-- **[Analysis workflow](docs/analysis_workflow.md)** — Task 1a deliverable: the full data-to-insight process, how the events dataset is used downstream in EDA and change point modeling, and how time series properties (trend, stationarity, volatility) inform the Bayesian change point model design.
+- **[Analysis workflow](docs/analysis_workflow.md)** — Task 1a deliverable: the full data-to-insight process, how the events dataset is used downstream in EDA and change point modeling.
 - **[Assumptions & limitations](docs/assumptions_and_limitations.md)** — Task 1a deliverable: including the correlation-vs-causation distinction central to interpreting change point results.
 - **[Events dataset](data/events.csv)** — Task 1a deliverable: 21 major supply/demand shocks (1990–2022) used to interpret detected change points.
 
@@ -124,8 +147,8 @@ python3 -m pytest tests/ -v
 ### Event Correlation
 Automated matching of detected change points with curated historical events to identify probable causal factors. The closest event to the Feb 2004 and Jul 2005 change points is the US-led invasion of Iraq (March 2003), demonstrating the model's ability to capture lagged macroeconomic impacts.
 
-## Next Steps
+## Future Work
 
-- [ ] Task 3: Build interactive Flask + React dashboard to visualize change points and allow stakeholders to explore event correlations.
 - [ ] Advanced extensions: Incorporate multivariate factors (GDP, exchange rates) using Vector Autoregression (VAR).
 - [ ] Regime-switching models: Implement Hidden Markov Models (HMM) for explicit "calm" vs "volatile" state classification.
+- [ ] Dashboard deployment: Deploy the Flask/React app to a cloud platform (e.g., Render, Heroku) for public stakeholder access.
